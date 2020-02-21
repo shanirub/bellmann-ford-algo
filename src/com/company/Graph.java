@@ -1,13 +1,27 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Graph {
 
-    Kante[] kanten; // Vektor von Kanten
+    ArrayList<Kante> kanten; // Vektor von Kanten
     int numOfKnoten; // Zahl von Knoten
 
-    public Graph(Kante[] kanten, int numOfKnoten) {
-        this.kanten = kanten;
-        this.numOfKnoten = numOfKnoten;
+    public Graph() {
+        kanten = new ArrayList<Kante>();
+        numOfKnoten = 0;
     }
 
+    public void addKante(Kante kante) {
+        kanten.add(kante);
+        numOfKnoten++;
+    }
+
+    @Override
+    public String toString() {
+        return "Graph{" +
+                "kanten=" + kanten +
+                "numOfKnoten=" + numOfKnoten +
+                '}';
+    }
 }

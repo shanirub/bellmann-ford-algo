@@ -10,4 +10,12 @@ public class Kante {
         this.w = w; // Gewicht
     }
 
+    @Override
+    public String toString() {
+        return "Kante{" +
+                "v=" + v +
+                ", u=" + u +
+                ", w=" + w +
+                "}\n";
+    }
 }
