@@ -10,29 +10,11 @@ import java.util.stream.Stream;
 
 public class Main {
 
-    /*static class LineConsumer implements Consumer<String> {
-
-        @Override
-        public void accept(String line) {
-
-            // What to do for each line
-            String[] fields = line.split(DL);
-            if (fields.length>1) {
-                try {
-                    Date dt = fmt.parse(fields[0]);
-                }
-                catch (ParseException e) {
-                }
-                double d = Double.parseDouble(fields[1]);
-                int t = Integer.parseInt(fields[2]);
-                if (fields[3].equals("overrun"))
-                    overrunCount++;
-            }
-        }
-    }*/
-
     public static void main(String[] args) {
 
+        /*
+        Graph Objekt erzeugen von Datei
+         */
         Graph g = new Graph();
 
         Path path = FileSystems.getDefault().getPath("Graph_BF2_1.txt");
@@ -54,6 +36,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println(g);
+        System.out.println(g); // Graph Objekt ausdrucken
     }
 }
