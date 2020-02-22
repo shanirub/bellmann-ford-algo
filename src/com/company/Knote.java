@@ -5,11 +5,9 @@ public class Knote {
     protected int v; // com.company.Knote Nummer
     protected int vor; // Vorgänger
     protected int dist; // Distanz von s (Startknote)
-    protected boolean istStartknote;
 
-    public Knote(int v, boolean  istStartknote) {
+    public Knote(int v) {
         this.v = v;
-        this.istStartknote = istStartknote;
         vor = -1; // bedeutet es gibt noch keinen Vorgänger / unbestimmt Vorgänger
         dist = Integer.MAX_VALUE; // bedeutet unendlich (also max. Wert von Integer)
     }
@@ -19,8 +17,6 @@ public class Knote {
         return "Knote{" +
                 "v=" + v +
                 ", vor=" + vor +
-                ", dist=" + dist +
-                ", istStartknote=" + istStartknote +
-                "}\n";
+                ", dist=" + dist + "}\n";
     }
 }

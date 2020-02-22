@@ -37,5 +37,7 @@ public class Main {
         }
 
         System.out.println(g); // Graph Objekt ausdrucken
+
+
     }
 }
