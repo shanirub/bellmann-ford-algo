@@ -9,9 +9,22 @@ public class Algo {
 
     // init
     private static void init() {
+        Knote knote;
         numOfKnoten = 9;
         knoten = new ArrayList<Knote>();
 
+        // Startknote
+        knote = new Knote(0);
+        knote.dist = 0;
+        knoten.add(knote);
+
+        // die nächste 8 Knoten
+        for (int i = 1; i < numOfKnoten; i++) {
+            knote = new Knote(i);
+            knoten.add(knote);
+        }
+
+        System.out.println(knoten);
     }
 
     // iteration
@@ -30,6 +43,8 @@ public class Algo {
     }
 
     public static void runAlgo(Graph graph) {
+
+        init();
 
     }
 
