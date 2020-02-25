@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- * Todo add vorgänger
- */
 public class Main
 {
 
@@ -17,8 +14,8 @@ public class Main
     /**
      * Kanten von der Datei in Array lesen
      */
-    private static void readFile() {
-        File file = new File("Graph_BF2_1.txt");
+    private static void readFile(String filename) {
+        File file = new File(filename);
         try {
             Scanner scanner = new Scanner(file);
 
@@ -31,7 +28,8 @@ public class Main
             System.out.println(" Error in reading file");
             ex.printStackTrace();
         }
-        System.out.println("\n\n\t\t---Datei gelesen---");
+        System.out.println("\n\n\t\t---Datei gelesen: " + filename + " ---");
+        System.out.println("Format: (u, v) = w");
         for (int i = 0; i < numOfKanten; i++) {
             System.out.println("(" + graph[i][0] + ", " + graph[i][1] + ") = " + graph[i][2]);
         }
@@ -44,8 +42,9 @@ public class Main
      */
     private static void bellmannFord()
     {
-        int dist[] = new int[numOfKnoten];
-        int vor[] = new int[numOfKnoten];
+        int[] dist = new int[numOfKnoten];
+        int[] vor = new int[numOfKnoten];
+        boolean hatNegZyk = false; // hat negativer Zyklus
 
         // Init von dist(Distanz) und vor(Vorgänger) Arrays
         for (int i = 0; i < numOfKnoten; i++) {
@@ -59,7 +58,7 @@ public class Main
         {
             for (int j = 0; j < numOfKanten; j++)
             {
-                /**
+                /*
                  * u, v, w
                  * if dist(v) > dist(u) + w(u, v)
                  * then dist(v) = dist(u) + w(u, v) und vor(v) = u
@@ -83,8 +82,11 @@ public class Main
             int x = graph[i][0];
             int y = graph[i][1];
             int weight = graph[i][2];
-            if (dist[x] != Integer.MAX_VALUE && dist[x] + weight < dist[y])
-                System.out.println(" Graph hat einen negativen Zyklus.");
+            if (dist[x] != Integer.MAX_VALUE && dist[x] + weight < dist[y]) {
+                System.out.println(" Graph hat einen negativen Zyklus. Keine Lösung durch den Bellmann-Ford-Algorithmus.");
+                hatNegZyk = true;
+                return;
+            }
         }
 
         System.out.println("\n\n\t\t---Ergebnisse---");
@@ -97,7 +99,13 @@ public class Main
      */
     public static void main(String[] args)
     {
-        readFile();     // Methode um die Datei zu lesen
+        readFile("Graph_BF2_1.txt");     // Methode um die Datei zu lesen
+        bellmannFord(); // Methode um den Algo auszuführen
+
+        readFile("Graph_BF2_2.txt");     // Methode um die Datei zu lesen
+        bellmannFord(); // Methode um den Algo auszuführen
+
+        readFile("Graph_BF2_3.txt");     // Methode um die Datei zu lesen
         bellmannFord(); // Methode um den Algo auszuführen
     }
 }
